@@ -274,7 +274,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r10:
     attr:
       pose:
@@ -288,7 +288,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r11:
     attr:
       pose:
@@ -302,7 +302,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r12:
     attr:
       pose:
@@ -316,7 +316,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r13:
     attr:
       pose:
@@ -330,7 +330,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r14:
     attr:
       pose:
@@ -344,7 +344,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r15:
     attr:
       pose:
@@ -358,7 +358,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r2:
     attr:
       pose:
@@ -372,7 +372,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r3:
     attr:
       pose:
@@ -386,7 +386,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r4:
     attr:
       pose:
@@ -400,7 +400,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r5:
     attr:
       pose:
@@ -414,7 +414,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r6:
     attr:
       pose:
@@ -428,7 +428,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r7:
     attr:
       pose:
@@ -442,7 +442,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r8:
     attr:
       pose:
@@ -456,7 +456,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_r9:
     attr:
       pose:
@@ -470,7 +470,7 @@ actions:
       region: r2
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_s0:
     attr:
       pose:
@@ -484,7 +484,7 @@ actions:
       region: s0
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_s1:
     attr:
       pose:
@@ -498,7 +498,7 @@ actions:
       region: s1
     type: move
     weight: 10
-    guard: ""
+    guard: "1"
   goto_s2:
     attr:
       pose:
@@ -512,6 +512,7 @@ actions:
       region: s2
     type: move
     weight: 10
+    guard: "1"
 
   pick_box:
     type: "pick_box"
