@@ -1,243 +1,9 @@
-actions:
-  goto_r1:
-    attr:
-      pose:
-      - - -0.9
-        - -2.07
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r10:
-    attr:
-      pose:
-      - - 1.5
-        - -1.47
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r11:
-    attr:
-      pose:
-      - - -0.9
-        - -0.87
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r12:
-    attr:
-      pose:
-      - - -0.3
-        - -0.87
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r13:
-    attr:
-      pose:
-      - - 0.3
-        - -0.87
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r14:
-    attr:
-      pose:
-      - - 0.9
-        - -0.87
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r15:
-    attr:
-      pose:
-      - - 1.5
-        - -0.87
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r2:
-    attr:
-      pose:
-      - - -0.3
-        - -2.07
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r3:
-    attr:
-      pose:
-      - - 0.3
-        - -2.07
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r4:
-    attr:
-      pose:
-      - - 0.9
-        - -2.07
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r5:
-    attr:
-      pose:
-      - - 1.5
-        - -2.07
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r6:
-    attr:
-      pose:
-      - - -0.9
-        - -1.47
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r7:
-    attr:
-      pose:
-      - - -0.3
-        - -1.47
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r8:
-    attr:
-      pose:
-      - - 0.3
-        - -1.47
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_r9:
-    attr:
-      pose:
-      - - 0.9
-        - -1.47
-        - 0
-      - - 0
-        - 0
-        - 0
-        - 1
-      region: r2
-    type: move
-    weight: 10
-  goto_s0:
-    attr:
-      pose:
-      - - 0.3
-        - -2.07
-        - 0
-      - - 0.0
-        - 0.0
-        - 0.0
-        - 1.0
-      region: s0
-    type: move
-    weight: 10
-  goto_s1:
-    attr:
-      pose:
-      - - 0.9
-        - -2.07
-        - 0
-      - - 0.0
-        - 0.0
-        - 0.0
-        - 1.0
-      region: s1
-    type: move
-    weight: 10
-  goto_s2:
-    attr:
-      pose:
-      - - 1.5
-        - -0.87
-        - 0
-      - - 0.0
-        - 0.0
-        - 0.999999998926914
-        - 4.632679487995776e-05
-      region: s2
-    type: move
-    weight: 10
-state_dim:
-- 2d_pose_region
+state_dim: ["2d_pose_region", "nexus_load"]
+
 state_models:
   2d_pose_region:
-    initial: ''
+    ts_type: 2d_pose_region
+    initial: 'r1'
     nodes:
       r1:
         attr:
@@ -479,5 +245,267 @@ state_models:
           type: station
         connected_to:
           r15: goto_r15
-    ts_type: 2d_pose_region
+
+  nexus_load:
+    ts_type: "nexus_load"
+    initial: "unloaded"
+    nodes:
+      unloaded:
+        connected_to:
+          loaded_box: "pick_box"
+      loaded_box:
+        connected_to:
+          loaded_assembly: "pick_assembly"
+      loaded_assembly:
+        connected_to:
+          unloaded: "deliver_assembly"
+
+actions:
+  goto_r1:
+    attr:
+      pose:
+      - - -0.9
+        - -2.07
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r10:
+    attr:
+      pose:
+      - - 1.5
+        - -1.47
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r11:
+    attr:
+      pose:
+      - - -0.9
+        - -0.87
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r12:
+    attr:
+      pose:
+      - - -0.3
+        - -0.87
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r13:
+    attr:
+      pose:
+      - - 0.3
+        - -0.87
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r14:
+    attr:
+      pose:
+      - - 0.9
+        - -0.87
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r15:
+    attr:
+      pose:
+      - - 1.5
+        - -0.87
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r2:
+    attr:
+      pose:
+      - - -0.3
+        - -2.07
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r3:
+    attr:
+      pose:
+      - - 0.3
+        - -2.07
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r4:
+    attr:
+      pose:
+      - - 0.9
+        - -2.07
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r5:
+    attr:
+      pose:
+      - - 1.5
+        - -2.07
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r6:
+    attr:
+      pose:
+      - - -0.9
+        - -1.47
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r7:
+    attr:
+      pose:
+      - - -0.3
+        - -1.47
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r8:
+    attr:
+      pose:
+      - - 0.3
+        - -1.47
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_r9:
+    attr:
+      pose:
+      - - 0.9
+        - -1.47
+        - 0
+      - - 0
+        - 0
+        - 0
+        - 1
+      region: r2
+    type: move
+    weight: 10
+  goto_s0:
+    attr:
+      pose:
+      - - 0.3
+        - -2.07
+        - 0
+      - - 0.0
+        - 0.0
+        - 0.0
+        - 1.0
+      region: s0
+    type: move
+    weight: 10
+  goto_s1:
+    attr:
+      pose:
+      - - 0.9
+        - -2.07
+        - 0
+      - - 0.0
+        - 0.0
+        - 0.0
+        - 1.0
+      region: s1
+    type: move
+    weight: 10
+  goto_s2:
+    attr:
+      pose:
+      - - 1.5
+        - -0.87
+        - 0
+      - - 0.0
+        - 0.0
+        - 0.999999998926914
+        - 4.632679487995776e-05
+      region: s2
+    type: move
+    weight: 10
+
+  pick_box:
+    type: "pick_box"
+    weight: 10
+    guard: "s1"
+  pick_assembly:
+    type: "pick_assembly"
+    weight: 10
+    guard: "s2"
+  deliver_assembly:
+    type: "deliver_assembly"
+    weight: 10
+    guard: "s3"
 
