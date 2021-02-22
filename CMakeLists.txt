@@ -8,8 +8,8 @@ project(coin_ms4_demo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  ltl_automaton_6dof_hebi_arm
-  ltl_automaton_nexus
-  ltl_automaton_turtlebot
-  motion_capture_system
+  # ltl_automaton_6dof_hebi_arm
+  # ltl_automaton_nexus
+  # ltl_automaton_turtlebot
+  # motion_capture_system
 )
