@@ -18,7 +18,7 @@ DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatl
     <!-- Agent name -->
     <param name="agent_name" type="string" value="$(arg agent_name)" />
     <!-- hard and soft task parameters -->
-    <rosparam command="load" file="$(find coin_ms4_demo)/config/nexus_ltl_specs.yaml" />
+    <rosparam command="load" file="$(find coin_ms4_demo)/config/nexus_ltl_spec.yaml" />
     <!-- Transition system -->
     <param name="transition_system_textfile" type="str" textfile="$(find coin_ms4_demo)/config/nexus_ts.yaml" />
     <!-- Initial value of beta and gamme-->
@@ -45,6 +45,6 @@ DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatl
   </group>
 
   <!-- Nexus low-level controller -->
-  <include file="$(find sml_nexus_robot)/launch/bringup_$(arg agent_name).launch">
+  <include file="$(find sml_nexus_robot)/launch/bringup_$(arg agent_name).launch"/>
 
 </launch>
