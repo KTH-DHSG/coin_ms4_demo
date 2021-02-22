@@ -209,7 +209,7 @@ state_models:
       s0:
         attr:
           angle_hysteresis: 0.018
-          angle_tolerance: 0.09
+          angle_threshold: 0.09
           dist_hysteresis: 0.025
           pose:
           - - 0.3
@@ -222,7 +222,7 @@ state_models:
       s1:
         attr:
           angle_hysteresis: 0.018
-          angle_tolerance: 0.09
+          angle_threshold: 0.09
           dist_hysteresis: 0.025
           pose:
           - - 0.9
@@ -235,7 +235,7 @@ state_models:
       s2:
         attr:
           angle_hysteresis: 0.018
-          angle_tolerance: 0.09
+          angle_threshold: 0.09
           dist_hysteresis: 0.025
           pose:
           - - 1.5
