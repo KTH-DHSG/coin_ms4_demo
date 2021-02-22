@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>coin_ms4_demo</name>
+  <version>1.0.0</version>
+  <description>Contains all config files (TS and LTL specifications) and launch files for the different agents of the SSF COIN project MS4 demonstration.</description>
+
+  <maintainer email="rbaran@kth.ese">Robin Baran</maintainer>
+  <author email="rbaran@kth.ese">Robin Baran</author>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>ltl_automaton_6dof_hebi_arm</depend>
+  <depend>ltl_automaton_nexus</depend>
+  <depend>ltl_automaton_turtlebot</depend>
+  <depend>motion_capture_>system</depend>
+
+</package>
