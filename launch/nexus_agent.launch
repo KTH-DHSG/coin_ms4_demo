@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+To be launched on agent onboard computer. Include LTL planners, LTL agent nodes, as well as low-level and navigation nodes.
+
+DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatly.
+-->
+
+<launch>
+  <!-- Arguments -->
+  <arg name="agent_name" default="nexus0"/>
+  <arg name="initial_beta" default="10.0"/>
+  <arg name="gamma" default="10.0"/>
+  <arg name="initial_ts_state_from_agent" default="True"/>
+  <arg name="obstacle_names" default="[]" />
+
+  <group ns="$(arg agent_name)">
+    <!-- Load parameters -->
+    <!-- Agent name -->
+    <param name="agent_name" type="string" value="$(arg agent_name)" />
+    <!-- hard and soft task parameters -->
+    <rosparam command="load" file="$(find coin_ms4_demo)/config/nexus_ltl_specs.yaml" />
+    <!-- Transition system -->
+    <param name="transition_system_textfile" type="str" textfile="$(find coin_ms4_demo)/config/nexus_ts.yaml" />
+    <!-- Initial value of beta and gamme-->
+    <param name="initial_beta" type="double" value="$(arg initial_beta)" />
+    <param name="gamma" type="double" value="$(arg gamma)" />
+
+    <!-- Nexus LTL Planner and LTL related nodes -->
+    <include file="$(find ltl_automaton_nexus)/launch/ltl_nexus_hil.launch" >
+      <arg name="agent_name" value="$(arg agent_name)"/>
+      <arg name="initial_beta" value="$(arg initial_beta)"/>
+      <arg name="gamma" value="$(arg gamma)"/>
+      <arg name="initial_ts_state_from_agent" value="$(arg initial_ts_state_from_agent)"/>
+      <arg name="obstacle_names" value="$(arg obstacle_names)" />
+    </include>
+  
+    <!-- Nexus robot navigation -->
+    <group>
+      <remap from="cmd_vel" to="nav_vel" /> <!-- remap for mix-initiatived controller -->
+      <include file="$(find sml_nexus_navigation)/launch/mocap_navigation.launch">
+        <arg name="agent_name" value="$(arg agent_name)"/>
+        <arg name="run_mocap" value="false" />
+      </include>
+    </group>
+  </group>
+
+  <!-- Nexus low-level controller -->
+  <include file="$(find sml_nexus_robot)/launch/bringup_$(arg agent_name).launch">
+
+</launch>
