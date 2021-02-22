@@ -11,9 +11,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <depend>ltl_automaton_6dof_hebi_arm</depend>
+  <!-- <depend>ltl_automaton_6dof_hebi_arm</depend>
   <depend>ltl_automaton_nexus</depend>
   <depend>ltl_automaton_turtlebot</depend>
-  <depend>motion_capture_>system</depend>
+  <depend>motion_capture_>system</depend> -->
 
 </package>

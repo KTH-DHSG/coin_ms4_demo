@@ -36,7 +36,7 @@ DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatl
   
     <!-- Nexus robot navigation -->
     <group>
-      <remap from="cmd_vel" to="nav_vel" /> <!-- remap for mix-initiatived controller -->
+      <remap from="cmd_vel" to="nav_vel" /> <!-- remap for mixed-initiative controller -->
       <include file="$(find sml_nexus_navigation)/launch/mocap_navigation.launch">
         <arg name="agent_name" value="$(arg agent_name)"/>
         <arg name="run_mocap" value="false" />
