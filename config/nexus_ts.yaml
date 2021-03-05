@@ -251,8 +251,8 @@ state_models:
           r4: goto_r4
       s2:
         attr:
-          angle_hysteresis: 0.018
-          angle_threshold: 0.09
+          angle_hysteresis: 0.045
+          angle_threshold: 0.18
           dist_hysteresis: 0.025
           pose:
           - - 1.5
