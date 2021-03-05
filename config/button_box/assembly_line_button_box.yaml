@@ -1,0 +1,13 @@
+# Assembly line button box
+# Used to send acknowledgement of pick_box and pick_assembly tasks
+# Buttons are connected to GPIO 4 and GPIO 27 (using BCM numbering)
+
+# Button for placed box acknowledgment (pick_box action)
+placed_box_ack_button:
+    input_pin: 4                #using BCM numbering
+    topic_id: placed_box_ack    #ROS topic name
+    
+# Button for placed box acknowledgment (pick_assembly action)
+placed_assembly_ack_button:
+    input_pin: 27                    #using BCM numbering
+    topic_id: placed_assembly_ack    #ROS topic name
