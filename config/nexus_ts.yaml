@@ -114,9 +114,8 @@ state_models:
           type: square
         connected_to:
           r2: goto_r2
-          r1: goto_r1
-          r3: goto_r3
           r7: goto_r7
+          r3: goto_r3
       r3:
         attr:
           hysteresis: 0.15
@@ -128,7 +127,6 @@ state_models:
           type: square
         connected_to:
           r3: goto_r3
-          r2: goto_r2
           r4: goto_r4
           r8: goto_r8
           s0: goto_s0
@@ -186,7 +184,6 @@ state_models:
         connected_to:
           r7: goto_r7
           r12: goto_r12
-          r2: goto_r2
           r6: goto_r6
           r8: goto_r8
       r8:
