@@ -143,6 +143,7 @@ state_models:
                 connected_to:
                     r31: "goto_r31" 
                     r35: "goto_r35"
+                    s2: "goto_s2"
             r35:
                 attr:
                     type: "square"
@@ -173,6 +174,16 @@ state_models:
                     angle_hysteresis: 0.1
                 connected_to:
                     r36: "goto_r36"
+            s2:
+                attr:
+                    type: "station"
+                    pose: [[1.6,0.3], [0]]
+                    radius: 0.1
+                    angle_threshold: 0.1
+                    dist_hysteresis: 0.03
+                    angle_hysteresis: 0.1
+                connected_to:
+                    r34: "goto_r34"
     turtlebot_load:
         ts_type: "turtlebot_load"
         initial: "unloaded"
@@ -307,10 +318,17 @@ actions:
         attr:
             pose: [[1.7,1.8,0], [0,0,0,1]]
             region: s1
+    goto_s2:
+        type: "move"
+        weight: 10
+        guard: "1"
+        attr:
+            pose: [[1.6,0.3,0], [0,0,0,1]]
+            region: s2
     pick:
         type: "turtlebot_pick"
         weight: 10
-        guard: "r34 || charged"
+        guard: "s2 || charged"
     drop:
         type: "turtlebot_drop"
         weight: 10
