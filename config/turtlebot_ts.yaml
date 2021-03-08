@@ -193,7 +193,7 @@ state_models:
             s2:
                 attr:
                     type: "station"
-                    pose: [[1.6,0.3], [0]]
+                    pose: [[1.6,0.2], [0]]
                     radius: 0.1
                     angle_threshold: 0.1
                     dist_hysteresis: 0.03
@@ -340,7 +340,7 @@ actions:
         weight: 10
         guard: "1"
         attr:
-            pose: [[1.6,0.3,0], [0,0,0,1]]
+            pose: [[1.6,0.2,0], [0,0,0,1]]
             region: s2
     pick:
         type: "turtlebot_pick"
