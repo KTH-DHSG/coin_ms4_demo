@@ -397,7 +397,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r13
+      region: r3
     type: move
     weight: 10
     guard: "1"
@@ -411,7 +411,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r14
+      region: r4
     type: move
     weight: 10
     guard: "1"
@@ -481,7 +481,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r9
     type: move
     weight: 10
     guard: "1"
