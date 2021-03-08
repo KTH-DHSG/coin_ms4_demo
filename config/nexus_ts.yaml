@@ -143,7 +143,6 @@ state_models:
           type: square
         connected_to:
           r4: goto_r4
-          r3: goto_r3
           r5: goto_r5
           r9: goto_r9
           s1: goto_s1
@@ -159,7 +158,6 @@ state_models:
         connected_to:
           r5: goto_r5
           r10: goto_r10
-          r4: goto_r4
           r6: goto_r6
       r6:
         attr:
