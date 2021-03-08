@@ -285,7 +285,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r1
     type: move
     weight: 10
     guard: "1"
@@ -299,7 +299,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r10
     type: move
     weight: 10
     guard: "1"
@@ -313,7 +313,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r11
     type: move
     weight: 10
     guard: "1"
@@ -327,7 +327,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r12
     type: move
     weight: 10
     guard: "1"
@@ -341,7 +341,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r13
     type: move
     weight: 10
     guard: "1"
@@ -355,7 +355,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r14
     type: move
     weight: 10
     guard: "1"
@@ -369,7 +369,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r15
     type: move
     weight: 10
     guard: "1"
@@ -397,7 +397,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r13
     type: move
     weight: 10
     guard: "1"
@@ -411,7 +411,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r14
     type: move
     weight: 10
     guard: "1"
@@ -425,7 +425,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r5
     type: move
     weight: 10
     guard: "1"
@@ -439,7 +439,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r6
     type: move
     weight: 10
     guard: "1"
@@ -453,7 +453,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r7
     type: move
     weight: 10
     guard: "1"
@@ -467,7 +467,7 @@ actions:
         - 0
         - 0
         - 1
-      region: r2
+      region: r8
     type: move
     weight: 10
     guard: "1"
