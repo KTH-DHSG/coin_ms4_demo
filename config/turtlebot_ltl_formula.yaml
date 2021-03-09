@@ -1,2 +1,2 @@
 hard_task: "([] (uncharged -> <> charged)) && ([] <> loaded) && [](loaded -> <> unloaded) && [](!r23 && !r26 && !r32 && !r35)"
-soft_task: "[] ((loaded && s2) -> (!unloaded U (loaded && r22)))"
+soft_task: "[] ((loaded && s2) -> (!unloaded U (loaded && r36)))"
