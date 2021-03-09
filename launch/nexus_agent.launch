@@ -38,11 +38,11 @@ DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatl
     <group>
       <remap from="cmd_vel" to="nav_vel" /> <!-- remap for mixed-initiative controller -->
       <include file="$(find sml_nexus_navigation)/launch/mocap_navigation.launch">
-	<arg name="agent_name" value="$(arg agent_name)"/>
-  	<arg name="odom_frame_id" value="$(arg agent_name)/odom"/>
-	<arg name="base_frame_id" value="$(arg agent_name)/base_footprint"/>
-	<arg name="global_frame_id" value="map"/>
-	<arg name="local_planner" value="teb"/>
+        <arg name="agent_name" value="$(arg agent_name)"/>
+        <arg name="odom_frame_id" value="$(arg agent_name)/odom"/>
+        <arg name="base_frame_id" value="$(arg agent_name)/base_footprint"/>
+        <arg name="global_frame_id" value="map"/>
+        <arg name="local_planner" value="teb"/>
         <arg name="run_mocap" value="false" />
       </include>
     </group>
