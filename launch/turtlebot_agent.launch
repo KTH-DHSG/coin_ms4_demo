@@ -53,10 +53,12 @@ DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatl
     </group>
     
     <!-- Mobile base nodes -->
-    <!-- Set TF prefix -->       
-    <param name="tf_prefix" value="$(agent_name)" />
     <include file="$(find turtlebot_bringup)/launch/minimal.launch" />
-
+    <!--  Set TF prefix -->       
+    <param name="tf_prefix" value="$(arg agent_name)" />
+    <param name="mobile_base/odom_frame" value="$(arg agent_name)/odom" />
+    <param name="mobile_base/base_frame" value="$(arg agent_name)/base_footprint" />
+    
     <!-- velocity command HIL MIC node -->
     <remap from="cmd_vel" to="cmd_vel_mux/input/navi" />
     <node name="hil_vel_cmd_mixer" pkg="ltl_automaton_hil_mic" type="vel_cmd_mix_initiative_controller.py" output="screen" >
