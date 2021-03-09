@@ -23,6 +23,7 @@ state_models:
                     r22: "goto_r22"
                     r23: "goto_r23"
                     r25: "goto_r25"
+                    s1: "goto_s1"
             r23:
                 attr:
                     type: "square"
@@ -178,18 +179,17 @@ state_models:
                     r36: "goto_r36"
                     r33: "goto_r33" 
                     r35: "goto_r35"
-                    s1: "goto_s1"
             s1:
                 attr:
                     type: "station"
-                    pose: [[1.7,1.8], [0]]
+                    pose: [[-1.0,0.4], [0]]
                     radius: 0.1
                     angle_threshold: 0.1
                     dist_hysteresis: 0.03
                     angle_hysteresis: 0.1
                 connected_to:
                     s1: "goto_s1"
-                    r36: "goto_r36"
+                    r36: "goto_r22"
             s2:
                 attr:
                     type: "station"
@@ -333,7 +333,7 @@ actions:
         weight: 10
         guard: "1"
         attr:
-            pose: [[1.7,1.8,0], [0,0,0,1]]
+            pose: [[-1.0,0.4,0], [0,0,0,1]]
             region: s1
     goto_s2:
         type: "move"
