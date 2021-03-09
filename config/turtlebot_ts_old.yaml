@@ -7,7 +7,7 @@
 #   2d_point_region (2D point [x, y] without orientation)
 #   turtlebot_load
 
-state_dim: ["2d_pose_region", "turtlebot_load"]
+state_dim: ["2d_pose_region", "turtlebot_load", "battery_charge"]
 state_models:
     2d_pose_region:
         ts_type: "2d_pose_region"
@@ -213,6 +213,15 @@ state_models:
                 connected_to:
                     loaded: "pick"
                     unloaded: "drop"
+    battery_charge:
+        ts_type: "battery_charge"
+        initial: "charged"
+        nodes:
+            charged:
+                connected_to: {}
+            uncharged:
+                connected_to:
+                    charged: "charge"
 actions:
     goto_r22:
         type: "move"
@@ -336,10 +345,14 @@ actions:
     pick:
         type: "turtlebot_pick"
         weight: 10
-        guard: "s2"
+        guard: "s2 || charged"
     drop:
         type: "turtlebot_drop"
         weight: 10
-        guard: "r24"
+        guard: "r24 || charged"
+    charge:
+        type: "battery_charge"
+        weight: 10
+        guard: "s1"
              
 
