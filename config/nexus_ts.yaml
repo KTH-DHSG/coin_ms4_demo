@@ -246,7 +246,7 @@ state_models:
           pose:
           - - 1.5
             - -0.33
-          - - 3.1415
+          - - 0.0
           radius: 0.05
           type: station
         connected_to:
@@ -514,8 +514,8 @@ actions:
         - 0
       - - 0.0
         - 0.0
-        - 0.999999998926914
-        - 4.632679487995776e-05
+        - 0.0
+        - 1.0
       region: s2
     type: move
     weight: 10
