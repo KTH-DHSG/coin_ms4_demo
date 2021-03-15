@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+To be launched on agent onboard computer. Include LTL planners, LTL agent nodes, as well as low-level and navigation nodes.
+
+DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatly.
+-->
+
+<launch>
+  <!-- Arguments -->
+  <arg name="agent_name" default="turtlebot"/>
+  <arg name="initial_beta" default="15.0"/>
+  <arg name="gamma" default="10.0"/>
+  <arg name="initial_ts_state_from_agent" default="True"/>
+
+  <group ns="$(arg agent_name)">
+    
+    <!-- Mobile base nodes -->
+    <group ns="turtlebot_base">
+      <include file="$(find turtlebot_bringup)/launch/minimal.launch" />
+      <!--  Set TF prefix -->       
+      <param name="tf_prefix" value="$(arg agent_name)" />
+      <param name="mobile_base/odom_frame" value="$(arg agent_name)/odom" />
+      <param name="mobile_base/base_frame" value="$(arg agent_name)/base_footprint" />
+    </group>
+
+  </group>
+  
+
+</launch>

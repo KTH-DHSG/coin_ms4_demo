@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-To be launched on agent onboard computer. Include LTL planners, LTL agent nodes, as well as low-level and navigation nodes.
+To be launched on agent onboard computer or not. Include LTL planners, LTL agent nodes, as well as low-level and navigation nodes.
 
 DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatly.
 -->
@@ -58,15 +58,6 @@ DOES NOT INCLUDE MOTION CAPTURE POSITION FEEDBACK. Needs to be launched separatl
         <arg name="global_frame_id" value="map"/>
         <arg name="run_mocap" value="false" />
       </include>
-    </group>
-    
-    <!-- Mobile base nodes -->
-    <group ns="turtlebot_base">
-      <include file="$(find turtlebot_bringup)/launch/minimal.launch" />
-      <!--  Set TF prefix -->       
-      <param name="tf_prefix" value="$(arg agent_name)" />
-      <param name="mobile_base/odom_frame" value="$(arg agent_name)/odom" />
-      <param name="mobile_base/base_frame" value="$(arg agent_name)/base_footprint" />
     </group>
  
     <!-- velocity command HIL MIC node -->

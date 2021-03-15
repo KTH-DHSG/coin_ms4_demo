@@ -1,0 +1,98 @@
+<!-- Bringup the arm by connecting to the arm modules, the gripper, creating a groupe and broadcasting joint positions and TF -->
+<launch>
+    <!-- For bring up Hebi Arm -->
+	<!-- Defines default name and group name -->
+	<arg name="namespace" default="kth_hebi_arm" />
+	<arg name="group" default="arm_group" />
+	<arg name="safety" default="true" />
+        <arg name="gripper" default="true" />
+
+	<!-- Launches all nodes -->
+	<group ns="$(arg namespace)" >
+		<param name="group" value="$(arg group)" />
+		<!-- Load parameters -->
+		<rosparam file="$(find kth_hebi_arm)/config/kth_hebi_arm.yaml" command="load" />
+        <param name="end_effector_type" type="int" value="2" />
+		<param name="gains_file_path" value="$(find kth_hebi_arm)/config/pid_gains" />
+		<param name="robot_description" command="$(find xacro)/xacro.py $(find kth_hebi_arm_description)/urdf/kth_hebi_arm.xacro" />
+		<!-- HEBI Robotics arm node -->
+		<node name="hebiros_node" pkg="hebiros" type="hebiros_node" required="true" >
+			<remap from="/hebiros/node_frequency" to="command_frequency"/>
+			<remap from="/hebiros/action_frequency" to="command_frequency"/>
+			<remap from="/hebiros/feedback_frequency" to="feedback_frequency"/>
+		</node>
+		<!-- Panic button node -->
+		<group if="$(arg safety)">
+	  		<node name="emstop_watchdog" pkg="panic_button" type="emstop_watchdog.py" required="true" output="screen">
+				<remap from="emstop_watchdog/port" to="panic_button_arduino_port"/>
+				<remap from="emstop_watchdog/baud_rate" to="panic_button_baud_rate"/>
+				<remap from="emstop_watchdog/timeout" to="watchdog_timeout"/>
+			</node>
+		</group>
+		<!-- KTH Hebi arm main node -->
+		<node name="kth_hebi_arm_node" pkg="kth_hebi_arm" type="kth_hebi_arm_node" required="true" output="screen"/>
+
+		<!-- Gripper's Arduino serial node -->
+     		<group if="$(arg gripper)">
+			<node name="serial_node" pkg="rosserial_python" type="serial_node.py" output="screen">
+				<param name="port" value="/dev/ttyUSB1"/>
+				<remap from="port" to="gripper_arduino_port"/>
+			</node>
+		</group>
+
+		<!-- Robot state publisher for TF -->
+		<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+		<!-- Visualisation -->
+		<node name="rviz" pkg="rviz" type="rviz" args="-d $(find kth_hebi_arm_description)/urdf.rviz" />
+	</group>
+
+	<!-- Outside of group for namespace and source list issues -->
+	<rosparam param="$(arg namespace)/joint_state_pub_source_list" subst_value="True">["$(arg namespace)/hebiros/$(arg group)/feedback/joint_state"]</rosparam>
+	<node name="joint_state_publisher_$(arg namespace)" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
+		<remap from="robot_description" to="$(arg namespace)/robot_description"/>
+		<remap from="source_list" to="$(arg namespace)/joint_state_pub_source_list"/>
+		<remap from="joint_states" to="$(arg namespace)/joint_states" />
+	</node>
+
+    <!-- For ltl_automaton_hebi -->
+    <!-- Arguments -->
+    <arg name="agent_name" default="kth_hebi_arm"/>
+    <arg name="initial_ts_state_from_agent" default="False"/>
+    <arg name="pick_agent_list" default="[nexus0,nexus2,nexus5]"/>
+    <arg name="drop_agent_list" default="[turtlebot]"/>
+    <arg name="pick_agent_load_state_guard" default="[loaded_assembly,loaded_box]"/>
+
+    <group ns="$(arg agent_name)" >
+    <!-- Load parameters -->
+    <!-- Agent name -->
+    <param name="agent_name" type="string" value="$(arg agent_name)" />
+    <!-- hard and soft task parameters -->
+    <rosparam command="load" file="$(find coin_ms4_demo)/config/6dof_hebi_ltl_formula.yaml" />
+    <!-- Transition system -->
+    <param name="transition_system_textfile" type="str" textfile="$(find coin_ms4_demo)/config/6dof_hebi_ts.yaml" />
+
+    <!-- <node name="pick_drop_inplace_monitor" pkg="ltl_automaton_6dof_hebi_arm" type="hebi_pick_drop_inplace_monitor.py" output="screen" >
+        <rosparam param="pick_agent_list" subst_value="True">$(arg pick_agent_list)</rosparam>
+        <rosparam param="drop_agent_list" subst_value="True">$(arg drop_agent_list)</rosparam> 
+        <rosparam param="pick_agent_load_state_guard" subst_value="True">$(arg pick_agent_load_state_guard)</rosparam>
+        <param name="pick_region" type="string" value="s2"/>
+        <param name="drop_region" type="string" value="s2"/> 
+    </node> -->
+
+
+    <!-- Run LTL planner node -->
+    <include file="$(find ltl_automaton_planner)/launch/ltl_planner.launch" >
+    <arg name="initial_ts_state_from_agent" default="False"/>
+    </include>
+
+    <!-- Run Hebi LTL node with the 6d pose region monitor-->
+    <!-- <remap from="command/joint_state" to="/hebiros/arm_group/command/joint_state"/> -->
+    <!-- <remap from="feedback/joint_state" to="hebiros/arm_group/feedback/joint_state"/> -->
+
+    <node name="ltl_automaton_hebi_node" pkg="ltl_automaton_6dof_hebi_arm" type="ltl_automaton_hebi_node_action.py" output="screen" />
+    <node name="$(arg agent_name)_region_6d_jointspace_monitor" pkg="ltl_automaton_std_transition_systems" type="region_6d_jointspace_monitor.py" output="screen" />
+
+    <node name="$(arg agent_name)_load_monitor" pkg="ltl_automaton_6dof_hebi_arm" type="hebi_load_monitor.py" output="screen" />
+    </group>
+
+</launch>

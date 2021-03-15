@@ -1,4 +1,3 @@
-
 # TS definitions are to be interpreted by the agent node. The LTL core planner only uses the node names, connections, weights, and action names to build its automaton.
 #
 # Possible TS types:
@@ -8,7 +7,7 @@
 #   2d_point_region (2D point [x, y] without orientation)
 #   turtlebot_load
 
-state_dim: ["2d_pose_region", "turtlebot_load"]
+state_dim: ["2d_pose_region", "turtlebot_load", "battery_charge"]
 state_models:
     2d_pose_region:
         ts_type: "2d_pose_region"
@@ -46,7 +45,6 @@ state_models:
                     r24: "goto_r24"
                     r23: "goto_r23"
                     r27: "goto_r27"
-                    s3: "goto_s3"
             r25:
                 attr:
                     type: "square"
@@ -203,17 +201,6 @@ state_models:
                 connected_to:
                     s2: "goto_s2"
                     r34: "goto_r34"
-            s3:
-                attr:
-                    type: "station"
-                    pose: [[-1.0, 1.6], [3.141529]]
-                    radius: 0.1
-                    angle_threshold: 0.1
-                    dist_hysteresis: 0.03
-                    angle_hysteresis: 0.1
-                connected_to:
-                    s3: "goto_s3"
-                    r24: "goto_r24"
     turtlebot_load:
         ts_type: "turtlebot_load"
         initial: "unloaded"
@@ -226,6 +213,15 @@ state_models:
                 connected_to:
                     loaded: "pick"
                     unloaded: "drop"
+    battery_charge:
+        ts_type: "battery_charge"
+        initial: "charged"
+        nodes:
+            charged:
+                connected_to: {}
+            uncharged:
+                connected_to:
+                    charged: "charge"
 actions:
     goto_r22:
         type: "move"
@@ -246,7 +242,7 @@ actions:
         weight: 10
         guard: "1"
         attr:
-            pose: [[-0.9,1.6,0], [0,0,0,1]]
+            pose: [[-0.9,1.6,0], [0,0,1,0]]
             region: r24
     goto_r25:
         type: "move"
@@ -346,20 +342,17 @@ actions:
         attr:
             pose: [[1.6,0.2,0], [0,0,0,1]]
             region: s2
-    goto_s3:
-        type: "move"
-        weight: 10
-        guard: "1"
-        attr:
-            pose: [[-1.0,1.6,0],[0,0,1,0]]
-            region: s3
     pick:
         type: "turtlebot_pick"
         weight: 10
-        guard: "s2"
+        guard: "s2 || charged"
     drop:
         type: "turtlebot_drop"
         weight: 10
-        guard: "s3"
+        guard: "r24 || charged"
+    charge:
+        type: "battery_charge"
+        weight: 10
+        guard: "s1"
              
 
