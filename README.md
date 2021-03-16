@@ -49,7 +49,7 @@ PICTURE
 The nexus robot LTL formula can be found at [/config/nexus_ltl_spec.yaml](/config/nexus_ltl_spec.yaml).
 
 #### Hard task
-Hard task is: `(⎕◊*𝑙𝑜𝑎𝑑𝑒𝑑_𝑎𝑠𝑠𝑒𝑚𝑏𝑙𝑦*)∧(⎕◊*𝑢𝑛𝑙𝑜𝑎𝑑𝑒𝑑*)`.
+Hard task is: `(⎕◊*loaded_assembly*)∧(⎕◊*unloaded*)`.
 
 The robot should alternatively be loaded with the full assembly and unloaded.
 
@@ -91,7 +91,7 @@ PICTURE
 The manipulator LTL formula can be found at [/config/6dof_hebi_ltl_spec.yaml](/config/6dof_hebi_ltl_spec.yaml).
 
 #### Hard task
-Hard task is: `(⎕◊*𝑙𝑜𝑎𝑑𝑒𝑑_𝑎𝑠𝑠𝑒𝑚𝑏𝑙𝑦*)∧(⎕◊*𝑢𝑛𝑙𝑜𝑎𝑑𝑒𝑑*)`.
+Hard task is: `(⎕◊*loaded_assembly*)∧(⎕◊*unloaded*)`.
 
 The robot should alternatively be loaded with the full assembly and unloaded.
 
@@ -145,14 +145,14 @@ PICTURE
 The robot LTL formula can be found at [/config/turtlebot_ltl_spec.yaml](/config/turtlebot_ltl_spec.yaml).
 
 #### Hard task
-Hard task is: `(⎕ (*𝑢𝑛𝑐ℎ𝑎𝑟𝑔𝑒𝑑* →◊ *𝑐ℎ𝑎𝑟𝑔𝑒𝑑*)) ∧ (⎕◊ *𝑙𝑜𝑎𝑑𝑒𝑑*) ∧ ⎕(𝑙𝑜𝑎𝑑𝑒𝑑 →◊ *𝑢𝑛𝑙𝑜𝑎𝑑𝑒𝑑*) ∧ ⎕(¬ *𝑟23* ∧ ¬ *𝑟26* ∧ ¬ *𝑟32* ∧ ¬ *𝑟35* )`.
+Hard task is: `(⎕ (*uncharged* →◊ *charged*)) ∧ (⎕◊ *loaded*) ∧ ⎕(loaded →◊ *unloaded*) ∧ ⎕(¬ *r23* ∧ ¬ *r26* ∧ ¬ *r32* ∧ ¬ *r35* )`.
 
 * If the robot battery is uncharged, it has to charge it.
 * AND The robot should alternatively be loaded and unloaded.
 * AND The robot should avoid regions with obstacles (r23, r26, r32, r35) 
 
 #### Soft task
-Soft task is `((*𝑙𝑜𝑎𝑑𝑒𝑑* ∧ 𝑠2 )  → ((¬ *𝑢𝑛𝑙𝑜𝑎𝑑𝑒𝑑*)  U (*𝑙𝑜𝑎𝑑𝑒𝑑* ∧ *𝑟36* )))`.
+Soft task is `((*loaded* ∧ 𝑠2 )  → ((¬ *unloaded*)  U (*loaded* ∧ *r36* )))`.
 
 The robot should go to region r36 after being loaded and before unloading (for a visual inspection task)
 
