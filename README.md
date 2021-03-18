@@ -10,7 +10,7 @@ A centralized and shared localization is provided my the motion capture system o
 ## Nexus - Assembly line robots
 Assembly robots are Nexus Robotics 4WD Holonomic robots equipped with custom internal controller and a platform for package handling.
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/nexus_assembly_line.png" align="center" height="471" width="412"></a>
 
 Onboard computer is either:
 * Nvidia Jetson TX2
@@ -31,7 +31,7 @@ The nexus robot TS config file can be found at [/config/nexus_ts.yaml](/config/n
 #### Workspace model
 The workspace is discretized in 15 regions and 3 stations (using the 2d pose region from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/nexus_ws.png" align="center" height="438" width="454"></a>
 
 #### Load model
 The load model is composed of 3 states:
@@ -39,7 +39,7 @@ The load model is composed of 3 states:
 * loaded_box
 * loaded_assembly
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/nexus_load.png" align="center" height="260" width="800"></a>
 
 * "pick_box" only possible at "s0"
 * "pick_assembly" only possible at "s1"
@@ -49,7 +49,7 @@ PICTURE
 The nexus robot LTL formula can be found at [/config/nexus_ltl_spec.yaml](/config/nexus_ltl_spec.yaml).
 
 #### Hard task
-Hard task is: `(⎕◊*loaded_assembly*)∧(⎕◊*unloaded*)`.
+Hard task is: `(⎕◊ loaded_assembly)∧(⎕◊ unloaded)`.
 
 The robot should alternatively be loaded with the full assembly and unloaded.
 
@@ -62,7 +62,7 @@ No soft task defined.
 ## Hebi arm manipulator
 The manipulator is a HEBI Robotics A-2085-06 with 6 degrees of freedom. It is interfaced with ROS using the [hebiros package](http://wiki.ros.org/hebiros). It is endowed with a custom electromagnet end-effector for boxes handling.
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/hebi_manipulator.png" align="center" height="433" width="515"></a>
 
 The manipulator is running the LTL planner and its specific nodes from [ltl_automaton_6dof_hebi_arm](https://github.com/KTH-SML/ltl_automaton_6dof_hebi_arm).
 
@@ -75,14 +75,14 @@ The manipulator robot TS config file can be found at [/config/6dof_hebi_ts.yaml]
 #### Jointspace model
 The jointspace is discretized in 3 configurations (using the 6dof configurations from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/hebi_js.png" align="center" height="391" width="743"></a>
 
 #### Load model
 The load model is composed of 2 states:
 * unload
 * loaded
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/hebi_load.png" align="center" height="405" width="695"></a>
 
 * "pick" only possible at "pick_ready"
 * "drop" only possible at "drop_ready"
@@ -91,7 +91,7 @@ PICTURE
 The manipulator LTL formula can be found at [/config/6dof_hebi_ltl_spec.yaml](/config/6dof_hebi_ltl_spec.yaml).
 
 #### Hard task
-Hard task is: `(⎕◊*loaded_assembly*)∧(⎕◊*unloaded*)`.
+Hard task is: `(⎕◊ loaded_assembly)∧(⎕◊ unloaded)`.
 
 The robot should alternatively be loaded with the full assembly and unloaded.
 
@@ -103,7 +103,7 @@ No soft task defined.
 ## Turtlebot - Delivery robot
 The delivery robot used in the scenario is a [Turtlebot2](https://www.turtlebot.com/turtlebot2/). Embedded localization is not used and replaced by the motion capture system.
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/turtlebot_pic.png" align="center" height="592" width="439"></a>
 
 Using [move_base](http://wiki.ros.org/move_base) for navigation with default planner.
 
@@ -120,14 +120,14 @@ The delivery robot TS config file can be found at [/config/turtlebot_ts.yaml](/c
 #### Workspace model
 The workspace is discretized in 15 regions and 3 stations (using the 2d pose region from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/turtlebot_ws.png" align="center" height="432" width="340"></a>
 
 #### Load model
 The load model is composed of 3 states:
 * unloaded
 * loaded
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/turtlebot_load.png" align="center" height="281" width="580"></a>
 
 * "pick" only possible at "s2"
 * "drop" only possible at "s3"
@@ -137,7 +137,7 @@ The battery model is composed of 2 states:
 * uncharged
 * charged
 
-PICTURE
+<a href="url"><img src="/documentation/pictures/turtlebot_pic.png" align="center" height="258" width="526"></a>
 
 * "charge" only possible at "s1"
 
@@ -145,14 +145,14 @@ PICTURE
 The robot LTL formula can be found at [/config/turtlebot_ltl_spec.yaml](/config/turtlebot_ltl_spec.yaml).
 
 #### Hard task
-Hard task is: `(⎕ (*uncharged* →◊ *charged*)) ∧ (⎕◊ *loaded*) ∧ ⎕(loaded →◊ *unloaded*) ∧ ⎕(¬ *r23* ∧ ¬ *r26* ∧ ¬ *r32* ∧ ¬ *r35* )`.
+Hard task is: `(⎕ (uncharged →◊ charged)) ∧ (⎕◊ loaded) ∧ ⎕(loaded →◊ unloaded) ∧ ⎕(¬ r23 ∧ ¬ r26 ∧ ¬ r32 ∧ ¬ r35 )`.
 
 * If the robot battery is uncharged, it has to charge it.
 * AND The robot should alternatively be loaded and unloaded.
 * AND The robot should avoid regions with obstacles (r23, r26, r32, r35) 
 
 #### Soft task
-Soft task is `((*loaded* ∧ 𝑠2 )  → ((¬ *unloaded*)  U (*loaded* ∧ *r36* )))`.
+Soft task is `((loaded ∧ s2)  → ((¬ unloaded)  U (loaded ∧ r36)))`.
 
 The robot should go to region r36 after being loaded and before unloading (for a visual inspection task)
 
