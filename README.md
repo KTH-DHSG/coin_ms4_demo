@@ -1,6 +1,11 @@
 # coin_ms4_demo
 Contains all config files (TS and LTL specifications) and launch files for the different agents of the SSF COIN project MS4 demonstration.
 
+The demonstration is now finished, a video of it can be found [here](https://www.youtube.com/watch?v=Gd-rqX04OdU).
+
+<a href="url"><img src="/documentation/pictures/factory_demo_setup.png" align="center" height="301" width="376"></a>
+<a href="url"><img src="/documentation/pictures/factory_demo_pic.png" align="center" height="331" width="399"></a>
+
 ## Host computer
 The host computer is running the ROS core. It's important to set all robots and external element ROS_MASTER_URI to the host computer IP.
 
@@ -31,7 +36,7 @@ The nexus robot TS config file can be found at [/config/nexus_ts.yaml](/config/n
 #### Workspace model
 The workspace is discretized in 15 regions and 3 stations (using the 2d pose region from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-<a href="url"><img src="/documentation/pictures/nexus_ws.png" align="center" height="438" width="454"></a>
+<a href="url"><img src="/documentation/pictures/nexus_ws.png" align="center" height="285" width="295"></a>
 
 #### Load model
 The load model is composed of 3 states:
@@ -39,7 +44,7 @@ The load model is composed of 3 states:
 * loaded_box
 * loaded_assembly
 
-<a href="url"><img src="/documentation/pictures/nexus_load.png" align="center" height="260" width="800"></a>
+<a href="url"><img src="/documentation/pictures/nexus_load.png" align="center" height="156" width="480"></a>
 
 * "pick_box" only possible at "s0"
 * "pick_assembly" only possible at "s1"
@@ -75,14 +80,14 @@ The manipulator robot TS config file can be found at [/config/6dof_hebi_ts.yaml]
 #### Jointspace model
 The jointspace is discretized in 3 configurations (using the 6dof configurations from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-<a href="url"><img src="/documentation/pictures/hebi_js.png" align="center" height="391" width="743"></a>
+<a href="url"><img src="/documentation/pictures/hebi_js.png" align="center" height="195" width="371"></a>
 
 #### Load model
 The load model is composed of 2 states:
 * unload
 * loaded
 
-<a href="url"><img src="/documentation/pictures/hebi_load.png" align="center" height="405" width="695"></a>
+<a href="url"><img src="/documentation/pictures/hebi_load.png" align="center" height="202" width="347"></a>
 
 * "pick" only possible at "pick_ready"
 * "drop" only possible at "drop_ready"
@@ -103,13 +108,13 @@ No soft task defined.
 ## Turtlebot - Delivery robot
 The delivery robot used in the scenario is a [Turtlebot2](https://www.turtlebot.com/turtlebot2/). Embedded localization is not used and replaced by the motion capture system.
 
-<a href="url"><img src="/documentation/pictures/turtlebot_pic.png" align="center" height="592" width="439"></a>
+<a href="url"><img src="/documentation/pictures/turtlebot_pic.png" align="center" height="296" width="220"></a>
 
 Using [move_base](http://wiki.ros.org/move_base) for navigation with default planner.
 
 The robots is running the LTL planner and the robot-specific nodes from [ltl_automaton_turtlebot](https://github.com/KTH-DHSG/ltl_automaton_turtlebot).
 
-To run the robot, launch from the onboard computer: `roslaunch coin_ms4_demo turtlebot_agent.launch"`
+To run the robot, launch from the onboard computer: `roslaunch coin_ms4_demo turtlebot_agent.launch initial_beta:=40"`
 
 For perfomance reasons, it can be useful to run only the high level nodes (LTL planner, LTL Turtlebot node, HIL nodes) on a host computer instead of the Turtlebot onboard laptop. To do so, run the following on the host computer: `roslaunch coin_ms4_demo turtlebot_agent_high_level.launch`, and the following on the onboard computer: `roslaunch coin_ms4_demo turtlebot_agent_low_level.launch`.
 
@@ -120,14 +125,14 @@ The delivery robot TS config file can be found at [/config/turtlebot_ts.yaml](/c
 #### Workspace model
 The workspace is discretized in 15 regions and 3 stations (using the 2d pose region from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-<a href="url"><img src="/documentation/pictures/turtlebot_ws.png" align="center" height="432" width="340"></a>
+<a href="url"><img src="/documentation/pictures/turtlebot_ws.png" align="center" height="324" width="255"></a>
 
 #### Load model
 The load model is composed of 3 states:
 * unloaded
 * loaded
 
-<a href="url"><img src="/documentation/pictures/turtlebot_load.png" align="center" height="281" width="580"></a>
+<a href="url"><img src="/documentation/pictures/turtlebot_load.png" align="center" height="140" width="290"></a>
 
 * "pick" only possible at "s2"
 * "drop" only possible at "s3"
@@ -137,7 +142,7 @@ The battery model is composed of 2 states:
 * uncharged
 * charged
 
-<a href="url"><img src="/documentation/pictures/turtlebot_pic.png" align="center" height="258" width="526"></a>
+<a href="url"><img src="/documentation/pictures/turtlebot_battery.png" align="center" height="129" width="263"></a>
 
 * "charge" only possible at "s1"
 
