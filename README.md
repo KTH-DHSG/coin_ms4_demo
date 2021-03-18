@@ -3,8 +3,8 @@ Contains all config files (TS and LTL specifications) and launch files for the d
 
 The demonstration is now finished, a video of it can be found [here](https://www.youtube.com/watch?v=Gd-rqX04OdU).
 
-<a href="url"><img src="/documentation/pictures/factory_demo_setup.png" align="center" height="301" width="376"></a>
-<a href="url"><img src="/documentation/pictures/factory_demo_pic.png" align="center" height="331" width="399"></a>
+<img src="/documentation/pictures/factory_demo_setup.png" align="center" height="301" width="376">
+<img src="/documentation/pictures/factory_demo_pic.png" align="center" height="331" width="399">
 
 ## Host computer
 The host computer is running the ROS core. It's important to set all robots and external element ROS_MASTER_URI to the host computer IP.
@@ -15,7 +15,7 @@ A centralized and shared localization is provided my the motion capture system o
 ## Nexus - Assembly line robots
 Assembly robots are Nexus Robotics 4WD Holonomic robots equipped with custom internal controller and a platform for package handling.
 
-<a href="url"><img src="/documentation/pictures/nexus_assembly_line.png" align="center" height="471" width="412"></a>
+<img src="/documentation/pictures/nexus_assembly_line.png" align="center" height="471" width="412">
 
 Onboard computer is either:
 * Nvidia Jetson TX2
@@ -36,7 +36,7 @@ The nexus robot TS config file can be found at [/config/nexus_ts.yaml](/config/n
 #### Workspace model
 The workspace is discretized in 15 regions and 3 stations (using the 2d pose region from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-<a href="url"><img src="/documentation/pictures/nexus_ws.png" align="center" height="285" width="295"></a>
+<img src="/documentation/pictures/nexus_ws.png" align="center" height="285" width="295">
 
 #### Load model
 The load model is composed of 3 states:
@@ -44,7 +44,7 @@ The load model is composed of 3 states:
 * loaded_box
 * loaded_assembly
 
-<a href="url"><img src="/documentation/pictures/nexus_load.png" align="center" height="156" width="480"></a>
+<img src="/documentation/pictures/nexus_load.png" align="center" height="156" width="480">
 
 * "pick_box" only possible at "s0"
 * "pick_assembly" only possible at "s1"
@@ -67,7 +67,7 @@ No soft task defined.
 ## Hebi arm manipulator
 The manipulator is a HEBI Robotics A-2085-06 with 6 degrees of freedom. It is interfaced with ROS using the [hebiros package](http://wiki.ros.org/hebiros). It is endowed with a custom electromagnet end-effector for boxes handling.
 
-<a href="url"><img src="/documentation/pictures/hebi_manipulator.png" align="center" height="433" width="515"></a>
+<img src="/documentation/pictures/hebi_manipulator.png" align="center" height="433" width="515">
 
 The manipulator is running the LTL planner and its specific nodes from [ltl_automaton_6dof_hebi_arm](https://github.com/KTH-SML/ltl_automaton_6dof_hebi_arm).
 
@@ -80,14 +80,14 @@ The manipulator robot TS config file can be found at [/config/6dof_hebi_ts.yaml]
 #### Jointspace model
 The jointspace is discretized in 3 configurations (using the 6dof configurations from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-<a href="url"><img src="/documentation/pictures/hebi_js.png" align="center" height="195" width="371"></a>
+<img src="/documentation/pictures/hebi_js.png" align="center" height="195" width="371">
 
 #### Load model
 The load model is composed of 2 states:
 * unload
 * loaded
 
-<a href="url"><img src="/documentation/pictures/hebi_load.png" align="center" height="202" width="347"></a>
+<img src="/documentation/pictures/hebi_load.png" align="center" height="202" width="347">
 
 * "pick" only possible at "pick_ready"
 * "drop" only possible at "drop_ready"
@@ -108,7 +108,7 @@ No soft task defined.
 ## Turtlebot - Delivery robot
 The delivery robot used in the scenario is a [Turtlebot2](https://www.turtlebot.com/turtlebot2/). Embedded localization is not used and replaced by the motion capture system.
 
-<a href="url"><img src="/documentation/pictures/turtlebot_pic.png" align="center" height="296" width="220"></a>
+<img src="/documentation/pictures/turtlebot_pic.png" align="center" height="296" width="220">
 
 Using [move_base](http://wiki.ros.org/move_base) for navigation with default planner.
 
@@ -125,14 +125,14 @@ The delivery robot TS config file can be found at [/config/turtlebot_ts.yaml](/c
 #### Workspace model
 The workspace is discretized in 15 regions and 3 stations (using the 2d pose region from [ltl_automaton_std_transition_systems](https://github.com/KTH-DHSG/ltl_automaton_core/tree/main/ltl_automaton_std_transition_systems)).
 
-<a href="url"><img src="/documentation/pictures/turtlebot_ws.png" align="center" height="324" width="255"></a>
+<img src="/documentation/pictures/turtlebot_ws.png" align="center" height="324" width="255">
 
 #### Load model
 The load model is composed of 3 states:
 * unloaded
 * loaded
 
-<a href="url"><img src="/documentation/pictures/turtlebot_load.png" align="center" height="140" width="290"></a>
+<img src="/documentation/pictures/turtlebot_load.png" align="center" height="140" width="290">
 
 * "pick" only possible at "s2"
 * "drop" only possible at "s3"
@@ -142,7 +142,7 @@ The battery model is composed of 2 states:
 * uncharged
 * charged
 
-<a href="url"><img src="/documentation/pictures/turtlebot_battery.png" align="center" height="129" width="263"></a>
+<img src="/documentation/pictures/turtlebot_battery.png" align="center" height="129" width="263">
 
 * "charge" only possible at "s1"
 
