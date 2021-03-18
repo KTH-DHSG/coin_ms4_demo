@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Assembly line button box launch file
+     Used to send acknowledgement of pick_box and pick_assembly tasks -->
+
+<launch>
+  <!-- Button box node -->
+  <node name="delivery_button_box" pkg="raspberry_pi_button" type="button_node.py" output="screen">
+    <!-- load button configurations -->
+    <rosparam command="load" file="$(find coin_ms4_demo)/config/button_box/delivery_button_box.yaml" />
+  </node>
+</launch>
